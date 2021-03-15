@@ -27,4 +27,11 @@ public class User {
         this.gender = gender;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", gender='" + gender + '\'' +
+                '}';
+    }
 }

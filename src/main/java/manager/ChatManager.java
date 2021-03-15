@@ -9,12 +9,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.ConcurrentMap;
 
 public class ChatManager {
     private static final ChatManager instance = new ChatManager();
-    private final Map<Session, User> usersMap = new HashMap<>();
-    private final List<Session> onlineListeners = new ArrayList<>();
-
+    private final ConcurrentMap<Session, User> usersMap = new ConcurrentHashMap<>();
+    private final ConcurrentLinkedQueue<Session> onlineListeners = new ConcurrentLinkedQueue<>();
+//    private final ConcurrentLinkedQueue<>
     private ChatManager() {
     }
 
@@ -39,6 +42,7 @@ public class ChatManager {
         onlineListeners.forEach(session -> {
             try {
                 var arr = new Gson().toJson(usersMap.values().stream().map(User::getName).toArray());
+                System.out.println("usersMap = " + usersMap);
                 System.out.println("arr = " + arr);
                 session.getBasicRemote().sendText(arr);
             } catch (IOException e) {
@@ -47,7 +51,7 @@ public class ChatManager {
         });
     }
 
-    public List<Session> getOnlineListeners() {
+    public ConcurrentLinkedQueue<Session> getOnlineListeners() {
         return onlineListeners;
     }
 }

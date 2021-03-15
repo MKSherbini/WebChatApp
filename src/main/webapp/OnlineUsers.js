@@ -7,7 +7,7 @@ function connect2() {
 
 }
 
-function receiveNewUsers2(event) {
+function receiveNewUsers2(evt) {
     var msg = JSON.parse(evt.data);
     onlineListContainer2.innerHTML = "";
     msg.forEach(function (e) {

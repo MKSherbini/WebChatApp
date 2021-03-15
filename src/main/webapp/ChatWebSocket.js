@@ -44,11 +44,11 @@ function receiveMessage(evt) {
     if (msg.orientation == 'right') {
         messagesContainer.innerHTML += '  <div class="d-flex justify-content-start mb-4">' +
             '                        <div class="msg_cotainer_send">' +
-            '                            <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img_msg">\n' +
+            '                            <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img_msg">' +
             +' <label style="color: white" htmlFor>' + msg.sender + ' </label>' +
             '                        </div>' +
             '                        <div class="msg_cotainer">' + msg.content +
-            '                            <span class="msg_time">' + msg.time + '</span>' +
+            '                            <span class="msg_time">' + msg.date + '</span>' +
             '                        </div>' +
             '                    </div>'
     } else {
@@ -58,7 +58,7 @@ function receiveMessage(evt) {
             +' <label style="color: white" htmlFor>' + msg.sender + ' </label>' +
             '                        </div>' +
             '                        <div class="msg_cotainer">' + msg.content +
-            '                            <span class="msg_time">' + msg.time + '</span>' +
+            '                            <span class="msg_time">' + msg.date + '</span>' +
             '                        </div>' +
             '                    </div>'
     }
