@@ -36,6 +36,7 @@ function sendName() {
 
 $(document).ready(function () {
     connect();
+    console.log("connecting echo")
 })
 
 function receiveMessage(evt) {

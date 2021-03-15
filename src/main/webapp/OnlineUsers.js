@@ -1,17 +1,17 @@
-var wSocket;
-var onlineListContainer = document.querySelector("#onlineUsers");
+var wSocket2;
+var onlineListContainer2 = document.querySelector("#onlineUsers");
 
-function connect() {
-    wSocket = new WebSocket("ws://localhost:9090/chatApp/online")
-    wSocket.onmessage = receiveNewUsers;
+function connect2() {
+    wSocket2 = new WebSocket("ws://localhost:9090/chatApp/online")
+    wSocket2.onmessage = receiveNewUsers2;
 
 }
 
-function receiveNewUsers(event) {
+function receiveNewUsers2(event) {
     var msg = JSON.parse(evt.data);
-    onlineListContainer.innerHTML = "";
+    onlineListContainer2.innerHTML = "";
     msg.forEach(function (e) {
-        onlineListContainer.innerHTML +=
+        onlineListContainer2.innerHTML +=
             '                    <li class="active">' +
             '                        <div class="d-flex bd-highlight">' +
             '                            <div class="img_cont">' +
@@ -31,5 +31,5 @@ function receiveNewUsers(event) {
 
 
 $(document).ready(function () {
-    connect();
+    connect2();
 })
