@@ -2,6 +2,7 @@ package manager;
 
 import com.google.gson.Gson;
 import jakarta.websocket.Session;
+import models.Message;
 import models.User;
 
 import java.io.IOException;
@@ -17,7 +18,8 @@ public class ChatManager {
     private static final ChatManager instance = new ChatManager();
     private final ConcurrentMap<Session, User> usersMap = new ConcurrentHashMap<>();
     private final ConcurrentLinkedQueue<Session> onlineListeners = new ConcurrentLinkedQueue<>();
-//    private final ConcurrentLinkedQueue<>
+    private final ConcurrentLinkedQueue<Message> messages = new ConcurrentLinkedQueue<>();
+
     private ChatManager() {
     }
 
@@ -53,5 +55,23 @@ public class ChatManager {
 
     public ConcurrentLinkedQueue<Session> getOnlineListeners() {
         return onlineListeners;
+    }
+
+    public void addMsg(Message msg) {
+        messages.add(msg);
+    }
+
+    public void notifyWithMsgs() {
+        usersMap.forEach((session, user) -> {
+            messages.forEach(message -> {
+                try {
+                    message.setOrientation("left");
+                    session.getBasicRemote().sendText(new Gson().toJson(message));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+        });
+
     }
 }

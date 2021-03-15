@@ -29,6 +29,7 @@ public class EchoServer {
         ChatManager.getInstance().add(session, new User("user" + EchoServer.i, "gender" + EchoServer.i));
         EchoServer.i++;
         ChatManager.getInstance().notifyWithOnline();
+        ChatManager.getInstance().notifyWithMsgs();
     }
 
     @OnMessage
@@ -37,11 +38,15 @@ public class EchoServer {
 //        User currentUser = ChatManager.getInstance().getUsersMap().get(session);
         Message receivedMsg = new Gson().fromJson(message, Message.class);
         if (receivedMsg.isMsg()) {
+            ChatManager.getInstance().addMsg(receivedMsg);
             ChatManager.getInstance().getUsersMap().forEach((otherSession, user) -> {
                 try {
-//                if (otherSession != session) {
-                    otherSession.getBasicRemote().sendText(message);
-//                }
+                    if (otherSession != session) {
+                        receivedMsg.setOrientation("left");
+                    } else {
+                        receivedMsg.setOrientation("right");
+                    }
+                    otherSession.getBasicRemote().sendText(new Gson().toJson(receivedMsg));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
