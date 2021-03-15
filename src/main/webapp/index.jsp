@@ -2,27 +2,44 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<%@include file="commons/pageCommon.jsp" %>
 <html>
 
 <head>
-    <%@include file="commons/headCommon.jsp" %>
-    <title>${applicationScope.urlMappingConstants.getTitle(PageNames.HOME_PAGE)}</title>
 </head>
 
 <header>
-    <%@include file="commons/headerCommon.jsp" %>
 </header>
 <body>
-<a href="${applicationScope.urlMappingConstants.getControllerUrl(PageNames.SIGN_IN_PAGE)}"
-   class="btn btn-primary">${applicationScope.urlMappingConstants.getTitle(PageNames.SIGN_IN_PAGE)}</a>
-<a href="${applicationScope.urlMappingConstants.getControllerUrl(PageNames.AJAX_FROM_SCRATCH)}"
-   class="btn btn-primary">${applicationScope.urlMappingConstants.getTitle(PageNames.AJAX_FROM_SCRATCH)}</a>
-<a href="${applicationScope.urlMappingConstants.getControllerUrl(PageNames.CHAT)}"
-        class="btn btn-primary">${applicationScope.urlMappingConstants.getTitle(PageNames.CHAT)}</a>
+<a href="signin.jsp"
+   class="btn btn-primary">Sign in</a>
 
+<input value="send" type="button" onclick="sendMsg()">
 <footer>
-    <%@include file="commons/footerCommon.jsp" %>
+    <script>
+        let wsocket;
+
+        function openConnection() {
+            wsocket = new WebSocket("ws://localhost:9090/Lab2_war_exploded/echo")
+            wsocket.onopen = onOpen;
+            wsocket.onmessage = onMessage;
+        }
+
+        openConnection();
+
+        function sendMsg(msg) {
+            msg = "dummyMsg";
+            wsocket.send(msg);
+        }
+
+        function onMessage(evt) {
+            console.log("received: " + evt.data);
+        }
+
+        function onOpen() {
+            console.log("Connection opened");
+        }
+
+    </script>
 </footer>
 </body>
 </html>
