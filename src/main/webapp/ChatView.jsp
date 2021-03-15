@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="chatStyle.css">
     <script src="ChatWebSocket.js" async></script>
 </head>
-<!--Coded With Love By Mutiullah Samim-->
 <body>
 <div class="container-fluid h-100">
     <div class="row justify-content-center h-100">
@@ -40,8 +39,8 @@
                             <span class="online_icon"></span>
                         </div>
                         <div class="user_info">
-                            <span>Chat with Khalid</span>
-                            <p>1767 Messages</p>
+                            <span id="username">${sessionScope.username}</span>
+<%--                            <p>1767 Messages</p>--%>
                         </div>
                         <div class="video_cam">
                             <span><i class="fas fa-video"></i></span>
@@ -65,7 +64,7 @@
                         <div class="img_cont_msg">
                             <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img_msg">
                         </div>
-                      
+
                         <div class="msg_cotainer">
                             Hi, how are you samim?
                             <span class="msg_time">8:40 AM, Today</span>
