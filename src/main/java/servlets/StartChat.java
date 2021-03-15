@@ -22,7 +22,7 @@ public class StartChat extends HttpServlet {
         return null;
     }
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         var username = request.getParameter("Username");
         var gender = request.getParameter("Gender");
         System.out.println("request.getParameter(\"Username\") = " + username);
@@ -30,7 +30,7 @@ public class StartChat extends HttpServlet {
 
         request.getSession().setAttribute("username", username);
         request.getSession().setAttribute("gender", gender);
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+        request.getRequestDispatcher("ChatView.jsp").forward(request, response);
     }
 
     public String getServletInfo() {

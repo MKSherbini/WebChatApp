@@ -1,6 +1,7 @@
 package servlets;
 
 
+import com.google.gson.Gson;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -13,6 +14,7 @@ import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
 import manager.ChatManager;
+import models.Message;
 import models.User;
 
 import java.io.IOException;
@@ -26,6 +28,7 @@ public class EchoServer {
         System.out.println(session.getId() + " has opened a connection");
         ChatManager.getInstance().add(session, new User("user" + EchoServer.i, "gender" + EchoServer.i));
         EchoServer.i++;
+        ChatManager.getInstance().notifyWithOnline();
     }
 
     @OnMessage
@@ -34,8 +37,11 @@ public class EchoServer {
         User currentUser = ChatManager.getInstance().getUsersMap().get(session);
         ChatManager.getInstance().getUsersMap().forEach((otherSession, user) -> {
             try {
-                if (otherSession != session)
+                if (otherSession != session) {
+                    Message receivedMsg = new Gson().fromJson(message, Message.class);
+
                     otherSession.getBasicRemote().sendText(message + " from " + currentUser.getName());
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -46,6 +52,7 @@ public class EchoServer {
     public void onClose(Session session) {
         System.out.println(session.getId() + " has closed a connection");
         ChatManager.getInstance().getUsersMap().remove(session);
+        ChatManager.getInstance().notifyWithOnline();
     }
 
 }

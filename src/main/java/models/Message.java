@@ -1,12 +1,30 @@
 package models;
 
-public class Message {
-    private String content;
-    private String date;
+import java.util.Date;
 
-    public Message(String content, String date) {
-        this.content = content;
-        this.date = date;
+public class Message {
+    private String sender;
+    private String content;
+    private Date date;
+    private String orientation;
+    private boolean isMsg;
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "sender='" + sender + '\'' +
+                ", content='" + content + '\'' +
+                ", date=" + date +
+                ", orientation='" + orientation + '\'' +
+                '}';
+    }
+
+    public String getSender() {
+        return sender;
+    }
+
+    public void setSender(String sender) {
+        this.sender = sender;
     }
 
     public String getContent() {
@@ -17,11 +35,27 @@ public class Message {
         this.content = content;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
+    }
+
+    public String getOrientation() {
+        return orientation;
+    }
+
+    public void setOrientation(String orientation) {
+        this.orientation = orientation;
+    }
+
+    public boolean isMsg() {
+        return isMsg;
+    }
+
+    public void setMsg(boolean msg) {
+        isMsg = msg;
     }
 }
