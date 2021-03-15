@@ -34,18 +34,21 @@ public class EchoServer {
     @OnMessage
     public void onMessage(String message, Session session) {
         System.out.println("Message from " + session.getId() + " : " + message);
-        User currentUser = ChatManager.getInstance().getUsersMap().get(session);
-        ChatManager.getInstance().getUsersMap().forEach((otherSession, user) -> {
-            try {
-                if (otherSession != session) {
-                    Message receivedMsg = new Gson().fromJson(message, Message.class);
-
-                    otherSession.getBasicRemote().sendText(message + " from " + currentUser.getName());
+//        User currentUser = ChatManager.getInstance().getUsersMap().get(session);
+        Message receivedMsg = new Gson().fromJson(message, Message.class);
+        if (receivedMsg.isMsg()) {
+            ChatManager.getInstance().getUsersMap().forEach((otherSession, user) -> {
+                try {
+//                if (otherSession != session) {
+                    otherSession.getBasicRemote().sendText(message);
+//                }
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
+            });
+        } else {
+            ChatManager.getInstance().getUsersMap().get(session).setName(receivedMsg.getSender());
+        }
     }
 
     @OnClose

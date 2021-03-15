@@ -10,6 +10,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js"></script>
     <link rel="stylesheet" href="chatStyle.css">
     <script src="ChatWebSocket.js" async></script>
+    <script src="OnlineUsers.js" async></script>
 </head>
 <body>
 <div class="container-fluid h-100">
