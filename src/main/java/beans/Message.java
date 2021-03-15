@@ -47,6 +47,6 @@ public class Message {
     }
 
     public void setOrientation(String orientation) {
-        orientation = orientation;
+        this.orientation = orientation;
     }
 }
