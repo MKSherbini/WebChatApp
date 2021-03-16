@@ -9,36 +9,6 @@ function connect() {
 
 }
 
-function sendMessage() {
-    var message = {
-        sender:$("#usernames").html(),
-        content: $("#textBox").val(),
-        date: new Date(),
-        orientation: "Right",
-        isMsg: true
-    }
-    $("#textBox").val("");
-    console.log("#sender"+ message.sender)
-    console.log("#orienation"+ message.orientation)
-    console.log("sender"+ message.sender)
-    // wSocket.send($("#textBox").val())
-
-    wSocket.send(JSON.stringify(message));
-}
-
-function sendName() {
-    var message = {
-        sender:$("#usernames").text(),
-        content: "hi i am ahmed",
-        date: new Date(),
-        orientation: "Right",
-        isMsg: false
-    }
-    console.log("sender"+ message.sender)
-    // wSocket.send($("#textBox").val())
-
-    wSocket.send(JSON.stringify(message));
-}
 
 $(document).ready(function () {
     connect();

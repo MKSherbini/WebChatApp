@@ -9,6 +9,16 @@ public class Message {
     private String orientation;
     private boolean isMsg;
 
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    private String gender;
+
     @Override
     public String toString() {
         return "Message{" +
@@ -16,6 +26,8 @@ public class Message {
                 ", content='" + content + '\'' +
                 ", date=" + date +
                 ", orientation='" + orientation + '\'' +
+                ", isMsg=" + isMsg +
+                ", gender='" + gender + '\'' +
                 '}';
     }
 

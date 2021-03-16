@@ -33,9 +33,11 @@ public class EchoServer {
 
     @OnMessage
     public void onMessage(String message, Session session) {
-
+        System.out.println("before "+message);
 //        User currentUser = ChatManager.getInstance().getUsersMap().get(session);
         Message receivedMsg = new Gson().fromJson(message, Message.class);
+        System.out.println("after "+receivedMsg);
+
         if (receivedMsg.isMsg()) {
             ChatManager.getInstance().addMsg(receivedMsg);
             ChatManager.getInstance().getUsersMap().forEach((otherSession, user) -> {
@@ -52,6 +54,8 @@ public class EchoServer {
             });
         } else {
             ChatManager.getInstance().getUsersMap().get(session).setName(receivedMsg.getSender());
+
+            ChatManager.getInstance().getUsersMap().get(session).setGender(receivedMsg.getGender());
             ChatManager.getInstance().notifyWithOnline();
 
         }

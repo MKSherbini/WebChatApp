@@ -43,7 +43,7 @@ public class ChatManager {
     public void notifyWithOnline() {
         onlineListeners.forEach(session -> {
             try {
-                var arr = new Gson().toJson(usersMap.values().stream().map(User::getName).toArray());
+                var arr = new Gson().toJson(usersMap.values().toArray());
                 System.out.println("usersMap = " + usersMap);
                 System.out.println("arr = " + arr);
                 session.getBasicRemote().sendText(arr);
