@@ -17,11 +17,12 @@ $(document).ready(function () {
 
 function receiveMessage(evt) {
     var msg = JSON.parse(evt.data);
+    let img = "https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg";
+    if (msg.gender == "Female")
+        img = "https://data.whicdn.com/images/295658437/original.jpg";
 
     if (msg.orientation == 'Right') {
-        let img = "https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg";
-        if (msg.gender == "Female")
-            img = "https://data.whicdn.com/images/295658437/original.jpg";
+
         messagesContainer.innerHTML += '\n' +
             '                    <div class="d-flex justify-content-end mb-4">\n' +
             '                        <div class="msg_cotainer_send">\n' +
