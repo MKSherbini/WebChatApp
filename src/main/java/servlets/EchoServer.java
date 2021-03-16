@@ -27,8 +27,6 @@ public class EchoServer {
     public void onOpen(Session session) {
         ChatManager.getInstance().add(session, new User("user" + EchoServer.i, "gender" + EchoServer.i));
         EchoServer.i++;
-        ChatManager.getInstance().notifyWithMsgs(session);
-
     }
 
     @OnMessage
@@ -57,7 +55,7 @@ public class EchoServer {
 
             ChatManager.getInstance().getUsersMap().get(session).setGender(receivedMsg.getGender());
             ChatManager.getInstance().notifyWithOnline();
-
+            ChatManager.getInstance().notifyWithMsgs(session);
         }
     }
 
