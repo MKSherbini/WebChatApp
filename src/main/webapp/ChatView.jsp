@@ -15,22 +15,6 @@
 <body>
 <div class="container-fluid h-100">
     <div class="row justify-content-center h-100">
-        <div class="col-md-4 col-xl-3 chat"><div class="card mb-sm-3 mb-md-0 contacts_card">
-            <div class="card-header">
-                <div class="input-group">
-                   <h2 align="center"> Online Users</h2>
-
-                </div>
-            </div>
-            <div class="card-body contacts_body">
-                <ui id="onlineUsers" class="contacts">
-
-
-
-                </ui>
-            </div>
-            <div class="card-footer"></div>
-        </div></div>
         <div class="col-md-8 col-xl-6 chat">
             <div class="card">
                 <div class="card-header msg_head">
@@ -41,7 +25,7 @@
                         </div>
                         <div class="user_info">
                             <label class="userName" id="usernames">${sessionScope.username}</label>
-<%--                            <p>1767 Messages</p>--%>
+                            <%--                            <p>1767 Messages</p>--%>
                         </div>
                         <div class="video_cam">
                             <span><i class="fas fa-video"></i></span>
@@ -69,7 +53,7 @@
                             Hi, how are you samim?
                             <span class="msg_time">8:40 AM, Today</span>
                         </div>
-                   </div>
+                    </div>
 
                     <div class="d-flex justify-content-end mb-4">
                         <div class="msg_cotainer_send">
@@ -96,6 +80,23 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-md-4 col-xl-3 chat"><div class="card mb-sm-3 mb-md-0 contacts_card">
+            <div class="card-header">
+                <div class="input-group">
+                   <h2 align="center"> Online Users</h2>
+
+                </div>
+            </div>
+            <div class="card-body contacts_body">
+                <ui id="onlineUsers" class="contacts">
+
+
+
+                </ui>
+            </div>
+            <div class="card-footer"></div>
+        </div></div>
     </div>
 </div>
 </body>
