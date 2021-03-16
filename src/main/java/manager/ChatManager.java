@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import jakarta.websocket.Session;
 import models.Message;
 import models.User;
-
+import jakarta.websocket.Session;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -61,17 +61,17 @@ public class ChatManager {
         messages.add(msg);
     }
 
-    public void notifyWithMsgs() {
-        usersMap.forEach((session, user) -> {
+    public void notifyWithMsgs(Session currentSession) {
+
             messages.forEach(message -> {
                 try {
                     message.setOrientation("left");
-                    session.getBasicRemote().sendText(new Gson().toJson(message));
+                    currentSession.getBasicRemote().sendText(new Gson().toJson(message));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             });
-        });
+
 
     }
 }

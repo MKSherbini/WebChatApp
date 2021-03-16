@@ -2,7 +2,7 @@ var wSocket2;
 var onlineListContainer2 = document.querySelector("#onlineUsers");
 
 function connect2() {
-    wSocket2 = new WebSocket("ws://localhost:9090/chatApp/online")
+    wSocket2 = new WebSocket("ws://localhost:9595/chatApp/online")
     wSocket2.onmessage = receiveNewUsers2;
 
 }

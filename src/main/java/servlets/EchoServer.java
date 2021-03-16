@@ -25,40 +25,40 @@ public class EchoServer {
 
     @OnOpen
     public void onOpen(Session session) {
-        System.out.println(session.getId() + " has opened a connection");
         ChatManager.getInstance().add(session, new User("user" + EchoServer.i, "gender" + EchoServer.i));
         EchoServer.i++;
-        ChatManager.getInstance().notifyWithOnline();
-        ChatManager.getInstance().notifyWithMsgs();
+        ChatManager.getInstance().notifyWithMsgs(session);
+
     }
 
     @OnMessage
     public void onMessage(String message, Session session) {
-        System.out.println("Message from " + session.getId() + " : " + message);
+
 //        User currentUser = ChatManager.getInstance().getUsersMap().get(session);
         Message receivedMsg = new Gson().fromJson(message, Message.class);
         if (receivedMsg.isMsg()) {
             ChatManager.getInstance().addMsg(receivedMsg);
             ChatManager.getInstance().getUsersMap().forEach((otherSession, user) -> {
                 try {
-                    if (otherSession != session) {
+
+                    if (!otherSession.getId() .equals( session.getId())) {
                         receivedMsg.setOrientation("left");
-                    } else {
-                        receivedMsg.setOrientation("right");
                     }
                     otherSession.getBasicRemote().sendText(new Gson().toJson(receivedMsg));
+                    receivedMsg.setOrientation("Right");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             });
         } else {
             ChatManager.getInstance().getUsersMap().get(session).setName(receivedMsg.getSender());
+            ChatManager.getInstance().notifyWithOnline();
+
         }
     }
 
     @OnClose
     public void onClose(Session session) {
-        System.out.println(session.getId() + " has closed a connection");
         ChatManager.getInstance().getUsersMap().remove(session);
         ChatManager.getInstance().notifyWithOnline();
     }

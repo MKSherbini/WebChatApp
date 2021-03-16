@@ -40,7 +40,7 @@
                             <span class="online_icon"></span>
                         </div>
                         <div class="user_info">
-                            <span id="username">${sessionScope.username}</span>
+                            <label class="userName" id="usernames">${sessionScope.username}</label>
 <%--                            <p>1767 Messages</p>--%>
                         </div>
                         <div class="video_cam">
@@ -65,7 +65,6 @@
                         <div class="img_cont_msg">
                             <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img_msg">
                         </div>
-
                         <div class="msg_cotainer">
                             Hi, how are you samim?
                             <span class="msg_time">8:40 AM, Today</span>

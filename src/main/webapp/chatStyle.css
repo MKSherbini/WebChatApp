@@ -5,7 +5,15 @@ body,html{
     background: -webkit-linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
     background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
 }
-
+.userName {
+    display: inline;
+    color: white;
+    font-size: 22px;
+}
+.sender{
+    color: white;
+    font-size: 13px;
+}
 .chat{
     margin-top: auto;
     margin-bottom: auto;
@@ -99,6 +107,7 @@ body,html{
     width: 40px;
     border:1.5px solid #f5f6fa;
 
+
 }
 .img_cont{
     position: relative;
@@ -162,6 +171,7 @@ body,html{
     background-color: #78e08f;
     padding: 10px;
     position: relative;
+    /*width: 100px;*/
 }
 .msg_time{
     position: absolute;
@@ -169,6 +179,7 @@ body,html{
     bottom: -15px;
     color: rgba(255,255,255,0.5);
     font-size: 10px;
+    display: block;
 }
 .msg_time_send{
     position: absolute;
