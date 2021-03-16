@@ -49,6 +49,9 @@ function receiveMessage(evt) {
     var msg = JSON.parse(evt.data);
 
     if (msg.orientation == 'Right') {
+        let img = "https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg";
+        if (msg.gender == "Female")
+            img = "https://data.whicdn.com/images/295658437/original.jpg";
         messagesContainer.innerHTML += '\n' +
             '                    <div class="d-flex justify-content-end mb-4">\n' +
             '                        <div class="msg_cotainer_send">\n' +
@@ -56,7 +59,7 @@ function receiveMessage(evt) {
             '                            <span class="msg_time_send">' + msg.date + '</span>\n' +
             '                        </div>\n' +
             '                        <div class="img_cont_msg">\n' +
-            '                            <img id="UserPhoto" src="images/male.jpg" class="rounded-circle user_img_msg">\n' +
+            '                            <img id="UserPhoto" src="'+img+'" class="rounded-circle user_img_msg">\n' +
             '                              <label class="sender">' + msg.sender + '</label>' +
             '                        </div>\n' +
             '                    </div>\n'
@@ -64,7 +67,7 @@ function receiveMessage(evt) {
     } else {
         messagesContainer.innerHTML += '   <div class="d-flex justify-content-start mb-4">\n' +
             '                        <div class="img_cont_msg">\n' +
-            '                            <img src="images/female.jpg" class="rounded-circle user_img_msg">\n' +
+            '                            <img src="'+img+'" class="rounded-circle user_img_msg">\n' +
             '                              <label class="sender">' + msg.sender + '</label>' +
             '                        </div>\n' +
             '                        <div class="msg_cotainer">\n' +
